@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 8000;
+const dotenv = require("dotenv");
+const PORT = process.env.PORT;
+
+dotenv.config({ path: "./config.env" });
+require("./db/conn");
 
 // Routing
 app.get("/", (req, res) => {
@@ -19,6 +23,6 @@ app.get("/contactus", (req, res) => {
     res.send("Welcome to contactus")
 })
 
-app.listen(port, () => {
-    console.log(`Listening to port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Listening to port $PORT}`);
 })
