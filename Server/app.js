@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const PORT = process.env.PORT;
+const User = require("./models/userSchema");
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
