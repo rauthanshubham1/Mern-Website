@@ -28,6 +28,9 @@ router.post("/register", async (req, res) => {
         if (userExist2) {
             return res.status(422).json({ "error": "PhoneNumber already exists" });
         }
+        if(password!==confirmPassword){
+            return res.status(422).json({ "error": "Password doesn't match with confirmed password" });
+        }
         const user = new User({
             name, email, phone, work, password, confirmPassword
         })
