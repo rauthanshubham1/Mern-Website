@@ -5,8 +5,6 @@ require("../db/conn");
 const bcrypt = require("bcryptjs");
 
 
-
-
 router.get("/", (req, res) => {
     res.send("Welcome to home page")
 })
@@ -55,6 +53,12 @@ router.post("/login", async (req, res) => {
         if (userExist) {
             const checkPassword = await bcrypt.compare(password, userExist.password);
             if (checkPassword) {
+                const token = await userExist.generateAuthToken();
+                res.cookie("jwt", token, {
+                    expires: new Date(Date.now() + 60000),
+                    httpOnly: true
+                })
+
                 res.json({ "Message": "Logged in" });
             } else {
                 res.json({ "Message": "Invalid Credentials" });
@@ -68,5 +72,6 @@ router.post("/login", async (req, res) => {
 
 
 })
+
 
 module.exports = router;
