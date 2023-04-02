@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/userSchema");
 require("../db/conn");
+const bcrypt = require("bcryptjs");
 
 
 
@@ -28,7 +29,7 @@ router.post("/register", async (req, res) => {
         if (userExist2) {
             return res.status(422).json({ "error": "PhoneNumber already exists" });
         }
-        if(password!==confirmPassword){
+        if (password !== confirmPassword) {
             return res.status(422).json({ "error": "Password doesn't match with confirmed password" });
         }
         const user = new User({
@@ -52,8 +53,8 @@ router.post("/login", async (req, res) => {
     try {
         const userExist = await User.findOne({ email: email });
         if (userExist) {
-            console.log(userExist)
-            if (userExist.password == password) {
+            const checkPassword = await bcrypt.compare(password, userExist.password);
+            if (checkPassword) {
                 res.json({ "Message": "Logged in" });
             } else {
                 res.json({ "Message": "Invalid Credentials" });
