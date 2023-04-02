@@ -1,29 +1,14 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
-const PORT = process.env.PORT;
-const User = require("./models/userSchema");
+const PORT = process.env.PORT || 8000;
+// const User = require("./models/userSchema");
 
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
-
-// Routing
-app.get("/", (req, res) => {
-    res.send("Welcome to home page")
-})
-app.get("/aboutme", (req, res) => {
-    res.send("Welcome to aboutme")
-})
-app.get("/login", (req, res) => {
-    res.send("Welcome to login")
-})
-app.get("/signup", (req, res) => {
-    res.send("Welcome to signup")
-})
-app.get("/contactus", (req, res) => {
-    res.send("Welcome to contactus")
-})
+app.use(express.json());
+app.use(require("./router/auth"));
 
 app.listen(PORT, () => {
-    console.log(`Listening to port $PORT}`);
+    console.log(`Listening to port ${PORT}`);
 })
