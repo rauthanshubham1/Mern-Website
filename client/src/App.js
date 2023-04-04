@@ -6,6 +6,7 @@ import Contact from "./components/Contact"
 import Login from "./components/Login"
 import Signup from "./components/Signup"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import "./App.css";
 
 const App = () => {
   return (
