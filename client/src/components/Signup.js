@@ -43,7 +43,7 @@ const Signup = () => {
     return (
         <div className='container mt-5'>
 
-            <form method="post" className='align-items-center'>
+            <form method="POST" className='align-items-center'>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input htmlFor="name" type="text" name="name" className="form-control" aria-describedby="emailHelp" value={User.name} onChange={handleInputs} />

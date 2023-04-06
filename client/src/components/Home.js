@@ -33,10 +33,10 @@ const Home = () => {
     return (
         <div className='container mt-4' style={myStyle}>
             <div style={div1}>
-                <h2 style={{ "color": "blue", "font-weight": "bold", "textDecoration": "underline" }}>Welcome</h2>
+                <h2 style={{ "color": "blue", "fontWeight": "bold", "textDecoration": "underline" }}>Welcome</h2>
             </div>
             <div style={div2}>
-                <h2 style={{ "color": "black", "font-weight": "450" }}>We are a Mern Developer</h2>
+                <h2 style={{ "color": "black", "fontWeight": "450" }}>We are a Mern Developer</h2>
             </div>
         </div>
     )

@@ -5,7 +5,7 @@ const About = () => {
         <div className="container mt-5">
             <div className='innerBox'>
                 <div className="col1">
-                    <img src={me} alt="" srcset="" />
+                    <img src={me} alt="" />
                 </div>
                 <div className="col2">
                     <div className="row1">
