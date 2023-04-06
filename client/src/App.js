@@ -7,6 +7,7 @@ import Login from "./components/Login"
 import Signup from "./components/Signup"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import "./App.css";
+import ErrorPage from './components/ErrorPage';
 
 const App = () => {
   return (
@@ -40,6 +41,11 @@ const App = () => {
             exact
             path="/register"
             element={<Signup />}
+          ></Route>
+          <Route
+            exact
+            path="/*"
+            element={<ErrorPage />}
           ></Route>
         </Routes>
 

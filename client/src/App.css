@@ -5,7 +5,7 @@
   font-family: "Montserrat", sans-serif;
 }
 body {
-  background: #96a6b7;
+  background: #ccda46;
 }
 .footer_get_touch_outer {
   margin-top: 40px;
@@ -132,4 +132,36 @@ ul {
 }
 .get_say_info_sec > li a:hover {
   background-color: #f85508;
+}
+
+.innerBox {
+  height: 640px;
+  border: 2px solid black;
+  background-color: lightgrey;
+  padding: 80px 80px;
+  display: flex;
+}
+
+.innerBox img {
+  height: 300px;
+}
+
+.col1 {
+  border: 2px solid black;
+}
+.col2 {
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 828px;
+}
+
+.row1 {
+  border: 2px solid black;
+  height: 320px;
+}
+
+.row2 {
+  border: 2px solid black;
+  height: 320px;
 }

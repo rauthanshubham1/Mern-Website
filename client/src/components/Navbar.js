@@ -1,17 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import mernlogo from "../images/mernlogo.jpg"
+import mernlogo from "../images/mernlogo.png"
 const Navbar = () => {
+
+
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary  navbar-dark bg-dark">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary  navbar-light bg-light">
 
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
                         <img style={{
                             "height": "30px",
-                            "width": "137px"
+                            "width": "170px"
                         }} src={mernlogo} alt="" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +25,7 @@ const Navbar = () => {
                                 <Link className="nav-link active ms-3" aria-current="page" to="/">HOME</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link active ms-3" aria-current="page" to="/about">ABOUT US</Link>
+                                <Link className="nav-link active ms-3" aria-current="page" to="/about">ABOUT YOU</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link active ms-3" aria-current="page" to="/contact">CONTACT US</Link>
