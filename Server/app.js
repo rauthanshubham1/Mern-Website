@@ -9,6 +9,8 @@ require("./db/conn");
 app.use(express.json());
 app.use(require("./router/auth"));
 
+
+
 app.listen(PORT, () => {
     console.log(`Listening to port ${PORT}`);
 })

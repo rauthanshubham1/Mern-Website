@@ -3,10 +3,19 @@ const router = express.Router();
 const User = require("../models/userSchema");
 require("../db/conn");
 const bcrypt = require("bcryptjs");
-
+const authenticate = require("../middleware/authenticate");
 
 router.get("/", (req, res) => {
     res.send("Welcome to home page")
+})
+
+
+router.get("/about", authenticate, (req, res) => {
+    res.send("About ")
+})
+
+router.get("/contact", (req, res) => {
+    res.send("About ")
 })
 
 
@@ -43,12 +52,12 @@ router.post("/register", async (req, res) => {
 
 
 router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
-        return res.status(422).json({ "error": "Please fill all the fields" });
-    }
-
     try {
+        const { email, password } = req.body;
+        if (!email || !password) {
+            return res.status(422).json({ "error": "Please fill all the fields" });
+        }
+
         const userExist = await User.findOne({ email: email });
         if (userExist) {
             const checkPassword = await bcrypt.compare(password, userExist.password);
@@ -69,9 +78,6 @@ router.post("/login", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-
-
 })
-
 
 module.exports = router;
