@@ -1,7 +1,36 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import me from "../images/me.jpeg"
+import { useNavigate } from 'react-router-dom'
 const About = () => {
-    const [User, setUser] = useState({ name: "", phone: "", email: "", work: "" });
+    const navigate = useNavigate();
+    const callAboutYouPage = async () => {
+        try {
+            const response = await fetch("/about", {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            })
+
+            const data = await response.json();
+            console.log(data);
+
+            if (!response.status === 200) {
+                const err = new Error(response.err);
+                throw err;
+            }
+        } catch (err) {
+            console.log(err);
+            navigate("/login")
+        }
+    }
+
+    useEffect(() => {
+        callAboutYouPage();
+    })
+
 
     return (
         <div className="container mt-5">
@@ -10,19 +39,19 @@ const About = () => {
                 <div className='row2'>
                     <div>
                         <label htmlFor="">Name:</label>
-                        <span>{User.name}</span>
+                        <span>{ }</span>
                     </div>
                     <div>
                         <label htmlFor="">Phone:</label>
-                        <span>{User.phone}</span>
+                        <span>{ }</span>
                     </div>
                     <div>
                         <label htmlFor="">Email:</label>
-                        <span>{User.email}</span>
+                        <span>{ }</span>
                     </div>
                     <div>
                         <label htmlFor="">Profession:</label>
-                        <span>{User.work}</span>
+                        <span>{ }</span>
                     </div>
                 </div>
             </div>

@@ -4,18 +4,19 @@ const User = require("../models/userSchema");
 require("../db/conn");
 const bcrypt = require("bcryptjs");
 const authenticate = require("../middleware/authenticate");
-
+const cookieParser = require("cookie-parser");
+router.use(cookieParser());
 router.get("/", (req, res) => {
     res.send("Welcome to home page")
 })
 
 
 router.get("/about", authenticate, (req, res) => {
-    res.send("About ")
+    res.send(req.rootUser);
 })
 
 router.get("/contact", (req, res) => {
-    res.send("About ")
+    res.send("Contact ")
 })
 
 
