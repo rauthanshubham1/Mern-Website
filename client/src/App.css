@@ -136,14 +136,17 @@ ul {
 
 .innerBox {
   background-color: lightgrey;
+  border: 2px solid red;
+  height: 710px;
   padding: 80px 80px;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .innerBox img {
-  height: 300px;
-  border: 5px solid #ccda46;
+  height: 250px;
+  border: 5px solid red;
 }
 
 .row1 {

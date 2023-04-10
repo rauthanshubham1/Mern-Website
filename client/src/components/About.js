@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
-import me from "../images/me.jpeg"
+import React, { useEffect, useState } from 'react'
+import shubham from "../images/me.jpeg";
+import unknown from "../images/unknown.jpeg";
 import { useNavigate } from 'react-router-dom'
+
 const About = () => {
+    const [UserData, setUserData] = useState({});
     const navigate = useNavigate();
     const callAboutYouPage = async () => {
         try {
@@ -15,7 +18,7 @@ const About = () => {
             })
 
             const data = await response.json();
-            console.log(data);
+            setUserData(data);
 
             if (!response.status === 200) {
                 const err = new Error(response.err);
@@ -35,23 +38,27 @@ const About = () => {
     return (
         <div className="container mt-5">
             <div className="innerBox">
-                <div className='row1'><img src={me} alt="" /></div>
+                <div className='row1'><img src={UserData.name === "Shubham" ? shubham : unknown} alt="" /></div>
                 <div className='row2'>
                     <div>
+                        <label htmlFor="">User Id:</label>
+                        <span>{UserData._id}</span>
+                    </div>
+                    <div>
                         <label htmlFor="">Name:</label>
-                        <span>{ }</span>
+                        <span>{UserData.name}</span>
                     </div>
                     <div>
                         <label htmlFor="">Phone:</label>
-                        <span>{ }</span>
+                        <span>{UserData.phone}</span>
                     </div>
                     <div>
                         <label htmlFor="">Email:</label>
-                        <span>{ }</span>
+                        <span>{UserData.email}</span>
                     </div>
                     <div>
                         <label htmlFor="">Profession:</label>
-                        <span>{ }</span>
+                        <span>{UserData.work}</span>
                     </div>
                 </div>
             </div>
