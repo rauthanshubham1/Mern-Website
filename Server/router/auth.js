@@ -81,4 +81,10 @@ router.post("/login", async (req, res) => {
     }
 })
 
+// Get user data for home and aboutyou page
+router.get('/getData', authenticate, (req, res) => {
+    console.log("Hello about you");
+    res.send(req.rootUser);
+});
+
 module.exports = router;
