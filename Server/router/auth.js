@@ -15,11 +15,26 @@ router.get("/about", authenticate, (req, res) => {
     res.send(req.rootUser);
 })
 
-router.get("/contact", (req, res) => {
-    res.send("Contact ")
+router.post("/contact", authenticate, async (req, res) => {
+    try {
+        const { name, email, phone, message } = req.body;
+        if (!name || !email || !phone || !message) {
+            return res.json({ error: "Please enter all details." });
+        }
+        console.log(req.body);
+        console.log(req.userId);
+        const userContact = await User.findOne({ _id: req.userId });
+
+        if (userContact) {
+            const userMessage = await userContact.addMessage(name, email, phone, message);
+            userContact.save();
+            res.status(201).json({ message: userMessage });
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
 })
-
-
 
 router.post("/register", async (req, res) => {
     const { name, email, phone, work, password, confirmPassword } = req.body;
@@ -83,8 +98,8 @@ router.post("/login", async (req, res) => {
 
 // Get user data for home and aboutyou page
 router.get('/getData', authenticate, (req, res) => {
-    console.log("Hello about you");
     res.send(req.rootUser);
 });
+
 
 module.exports = router;
