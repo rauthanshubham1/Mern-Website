@@ -1,6 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Home = () => {
+    const [name, setName] = useState("");
+
+    const displayName = async () => {
+        try {
+            const response = await fetch("/getData", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const data = await response.json();
+            setName(data.name);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     const myStyle = {
         "backgroundColor": "white",
         "height": "680px",
@@ -30,10 +47,15 @@ const Home = () => {
         "justifyContent": "center"
     }
 
+    useEffect(() => {
+        displayName();
+    }, [])
+
     return (
         <div className='container mt-4' style={myStyle}>
             <div style={div1}>
-                <h2 style={{ "color": "blue", "fontWeight": "bold", "textDecoration": "underline" }}>Welcome</h2>
+                <h2 style={{ "color": "blue", "fontWeight": "bold", "textDecoration": "underline" }}>Welcome
+                    <span> {name}</span></h2>
             </div>
             <div style={div2}>
                 <h2 style={{ "color": "black", "fontWeight": "450" }}>We are a Mern Developer</h2>
